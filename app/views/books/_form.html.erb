@@ -1,6 +1,6 @@
-<%= form_with model:book,local:true do |f| %>
- <!--form_with model: book, url: books_path, local:true do |f| -->
-  <div class="form-group">
+<%= form_with model: book, url: books_path, local:true do |f| %>
+  <div>
+   <!--どのurl(アクションで処理するか)-->
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control book_title' %>
   </div>

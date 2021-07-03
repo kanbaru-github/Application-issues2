@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # コントローラーに設定して、ログイン済ユーザーのみにアクセスを許可する
 
-  before_action :ensure_correct_user, only: [:edit, :update]
-  
+   before_action :ensure_correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
+    @books = Book.where(user_id: @user.id)
+    # @user.idの本を全て取ってくる
     @book = Book.new
   end
 
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
@@ -42,4 +43,5 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
 end
